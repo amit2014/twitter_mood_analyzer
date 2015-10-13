@@ -19,7 +19,7 @@ GET statuses/user_timeline
 2. parse input tweet to find keywords/important words  
 3. for each keyword, find negative/neutral/positive (mood) value  
 4. add up mood values of each word divided by total words to find total tweet mood value  
-note: not sure this is the best idea for finding tweet mood value; look at again tomorrow
+note: not sure this is the best idea for finding tweet mood value; look at again tomorrow  
 5. return total tweet mood value  
 
 
