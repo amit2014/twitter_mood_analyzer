@@ -31,3 +31,6 @@ note: not sure this is the best idea for finding tweet mood value; look at again
 - alert it high levels of negativity  
 
 
+--> Resources  
+- Sentiment Dictionary: http://www3.nd.edu/~mcdonald/Word_Lists.html  
+
