@@ -17,11 +17,12 @@ GET statuses/user_timeline
 --> Singular Tweet Mood Algorithm High-Level Idea:  
 1. function takes in tweet  
 2. parse input tweet to find keywords/important words  
-3. for each keyword, find negative/neutral/positive (mood) value  
-4. add up mood values of each word divided by total words to find total tweet mood value  
-note: not sure this is the best idea for finding tweet mood value; look at again tomorrow  
-5. return total tweet mood value  
+3. for each keyword, place into list: negative or positive    
+4. take length of positive list and subtract length of negative list  
+5. if resulting number is positive, tweet is positive; if number is negative, tweet is negative; if result is 0, tweet is neutral  
 
+note: Make sure to save the mood number in a list to graph over time
+(need to save date too)
 
 --> Over Program Ideas:  
 - input collection of tweets from 1 user  
