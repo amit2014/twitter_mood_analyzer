@@ -31,6 +31,10 @@ note: Make sure to save the mood number in a list to graph over time
 - graph array over time  
 - alert it high levels of negativity  
 
+--> 'Tweet' Data type?  
+- tweet.date  
+- tweet.status  
+- tweet.mood_number  
 
 --> Resources  
 - Sentiment Dictionary: http://www3.nd.edu/~mcdonald/Word_Lists.html  
