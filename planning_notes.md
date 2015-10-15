@@ -10,7 +10,7 @@ GET statuses/user_timeline
     - Self-defined?
     - Look into some machine learning
 - Include emojis and emoticons  
-- Hashtags?  
+- Hashtags? (need to skip # symbol when looking through bag)  
 - How to deal with sarcasm?  
 
 
@@ -30,15 +30,9 @@ note: Make sure to save the mood number in a list to graph over time
 - collect return value mood of each tweet in array  
 - graph array over time  
 - alert it high levels of negativity  
-
---> 'Tweet' Data type?  
-- tweet.date  
-- tweet.status  
-- tweet.mood_number  
+- alert set for "problem words" (ex: suicide, kill, etc)  
 
 --> Resources  
 - Sentiment Dictionary: http://www3.nd.edu/~mcdonald/Word_Lists.html  
 
---> Twitter API  
-https://dev.twitter.com/rest/reference/get/statuses/user_timeline  
 
