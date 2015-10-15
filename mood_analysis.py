@@ -13,7 +13,7 @@ from openpyxl import load_workbook
 
 def get_mood(tweet):
     # Open spreadsheet of values
-    wb = load_workbook('test.xlsx')
+    wb = load_workbook('bag_of_words.xlsx')
     ws = wb.active
     
     #create variables for positive words and negative words
@@ -22,11 +22,11 @@ def get_mood(tweet):
     # for each word in tweet, search spreadsheet for matching word
     # if word matches, get negative/positive value and add to variable
     for word in tweet:
-        for row in ws.iter_rows('A2:D20'):
-            if (word == row[0].value):
-                if (row[1].value == 1):
+        for row in ws.iter_rows('A1:D230'):
+            if (word.lower() == row[0].value):
+                if (row[1].value == 'negative'):
                     neg += 1
-                if (row[2].value == 1):
+                else:
                     pos +=1
     
     # find mood number by taking total number of positive words and subtracting total
@@ -57,6 +57,7 @@ def main():
     recent_tweets = api.user_timeline("BoredToLifePod")
     tweets = []
     for tweet in recent_tweets:
+        print tweet.text
         tweets.append(tweet.text.split())
 
     moods = []
