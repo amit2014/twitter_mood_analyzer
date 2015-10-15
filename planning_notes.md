@@ -24,7 +24,7 @@ GET statuses/user_timeline
 note: Make sure to save the mood number in a list to graph over time
 (need to save date too)
 
---> Over Program Ideas:  
+--> Overall Program Ideas:  
 - input collection of tweets from 1 user  
 - send each tweet through tweet mood function  
 - collect return value mood of each tweet in array  
@@ -38,4 +38,7 @@ note: Make sure to save the mood number in a list to graph over time
 
 --> Resources  
 - Sentiment Dictionary: http://www3.nd.edu/~mcdonald/Word_Lists.html  
+
+--> Twitter API  
+https://dev.twitter.com/rest/reference/get/statuses/user_timeline  
 
