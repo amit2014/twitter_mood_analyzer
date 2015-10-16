@@ -35,4 +35,18 @@ note: Make sure to save the mood number in a list to graph over time
 --> Resources  
 - Sentiment Dictionary: http://www3.nd.edu/~mcdonald/Word_Lists.html  
 
+**To Do List**  
+[ ] label y axis on graph
+[ ] check for "not" and other words that discount meaning  
+[ ] remove # and @ symbol when checking words  
+[ ] brain-storm sarcasm (research online)  
+[ ] checking for extra negative flags (add alert)  
+[ ] checking for danger flags (add alert)  
+[ ] add more to bag of words  
+[ ] user input twitter screen name  
 
+**Stretch Goals**  
+[ ] machine learning to add words  
+[ ] word mood ratings on scale of 1-10 instead of "neg" vs "pos"  
+[ ] more graphs (frequency of word [user can choose word]), most-used words, etc  
+[ ] GUI for user interaction  
