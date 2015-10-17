@@ -7,6 +7,7 @@
 # libraries
 import sys
 import tweepy
+import string
 import matplotlib.pyplot as plt
 from openpyxl import load_workbook
 
@@ -17,25 +18,29 @@ def get_mood(tweet):
     ws = wb.active
     
     #create variables for positive words and negative words
-    pos = neg = 0
+    pos = 0
+    neg = 0
     
     # for each word in tweet, search spreadsheet for matching word
     # if word matches, get negative/positive value and add to variable
     for word in tweet:
-        for row in ws.iter_rows('A1:D230'):
+        for row in ws.iter_rows('A1:B230'):
+            word = word.strip('#,@')
             if (word.lower() == row[0].value):
                 if (row[1].value == 'negative'):
                     neg += 1
                 else:
                     pos +=1
+                break
     
     # find mood number by taking total number of positive words and subtracting total
     # number of negative words
     mood_number = pos - neg
     return mood_number
 
-def plot_mood(moods):
-    plt.plot(moods)
+def plot_mood(dates,moods):
+    plt.plot(dates,moods)
+    plt.ylabel('Mood Level')
     plt.show()
 
 
@@ -52,20 +57,19 @@ def main():
     
     # Creation of actual interface, using authentication
     api = tweepy.API(auth)
-    
+
+    # Get Twitter user name from program user
+    screen_name = raw_input("Please enter the Twitter handle: ")
+
     # Gather recent tweets, split each tweet into a list of words
-    recent_tweets = api.user_timeline("BoredToLifePod")
-    tweets = []
-    for tweet in recent_tweets:
-        print tweet.text
-        tweets.append(tweet.text.split())
-
+    recent_tweets = api.user_timeline(screen_name)
     moods = []
-    for tweet in tweets:
-        moods.append(get_mood(tweet))
+    dates = []
+    for tweet in recent_tweets:
+        moods.append(get_mood(tweet.text.split()))
+        dates.append(tweet.created_at)
 
-    print moods
-    plot_mood(moods)
+    plot_mood(dates,moods)
 
 
 if (__name__ == '__main__'):
