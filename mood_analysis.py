@@ -12,26 +12,39 @@ import matplotlib.pyplot as plt
 from openpyxl import load_workbook
 
 
-def get_mood(tweet):
-    # Open spreadsheet of values
-    wb = load_workbook('bag_of_words.xlsx')
-    ws = wb.active
-    
+def get_mood(tweet,ws):
     #create variables for positive words and negative words
     pos = 0
     neg = 0
+    opposite = 0
     
     # for each word in tweet, search spreadsheet for matching word
     # if word matches, get negative/positive value and add to variable
     for word in tweet:
-        for row in ws.iter_rows('A1:B230'):
-            word = word.strip('#,@')
-            if (word.lower() == row[0].value):
-                if (row[1].value == 'negative'):
-                    neg += 1
-                else:
-                    pos +=1
-                break
+        # if word is a mention, skip
+        if (word[0] == '@'):
+            opposite = 0
+        else:
+            # remove hashtags and punctuation, change to lower-case
+            word = word.lower().strip(' ,#,,,.,!,?')
+            if (word == 'not'):
+                opposite = 1
+            else:
+                for row in ws.iter_rows('A1:B253'):
+                    if (word == row[0].value):
+                        if (row[1].value == 'negative'):
+                            if (opposite == 1):
+                                pos += 1
+                                opposite = 0
+                            else:
+                                neg += 1
+                        else:
+                            if (opposite == 1):
+                                neg += 1
+                                opposite = 0
+                            else:
+                                pos +=1
+                        break
     
     # find mood number by taking total number of positive words and subtracting total
     # number of negative words
@@ -60,15 +73,19 @@ def main():
 
     # Get Twitter user name from program user
     screen_name = raw_input("Please enter the Twitter handle: ")
+    
+    # Open spreadsheet of values
+    wb = load_workbook('bag_of_words.xlsx')
+    ws = wb.active
 
     # Gather recent tweets, split each tweet into a list of words
     recent_tweets = api.user_timeline(screen_name)
     moods = []
     dates = []
     for tweet in recent_tweets:
-        moods.append(get_mood(tweet.text.split()))
+        moods.append(get_mood(tweet.text.split(),ws))
         dates.append(tweet.created_at)
-
+    
     plot_mood(dates,moods)
 
 
