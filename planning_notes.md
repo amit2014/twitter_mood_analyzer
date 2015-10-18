@@ -37,16 +37,14 @@ note: Make sure to save the mood number in a list to graph over time
 
 **To Do List**  
 [x] label y axis on graph
-[ ] check for "not" and other words that discount meaning  
+[x] check for "not" and other words that discount meaning  
 [x] remove # and @ symbol when checking words  
-[ ] brain-storm sarcasm (research online)  
-[ ] checking for extra negative flags (add alert)  
-[ ] checking for danger flags (add alert)  
-[ ] add more to bag of words  
 [x] user input twitter screen name  
+[x] alert for extra negative tweet
 
 **Stretch Goals**  
+[ ] brain-storm sarcasm (research online)  
+[ ] add more to bag of words  
 [ ] machine learning to add words  
-[ ] word mood ratings on scale of 1-10 instead of "neg" vs "pos"  
 [ ] more graphs (frequency of word [user can choose word]), most-used words, etc  
 [ ] GUI for user interaction  

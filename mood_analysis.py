@@ -85,7 +85,16 @@ def main():
     for tweet in recent_tweets:
         moods.append(get_mood(tweet.text.split(),ws))
         dates.append(tweet.created_at)
-    
+
+    for mood in range(0,len(moods)):
+        if (moods[mood] <= -3):
+            print "ALERT! Negative tweet:"
+            print recent_tweets[mood].created_at
+            print recent_tweets[mood].text
+    print sum(moods)
+    if (sum(moods) < 0):
+        print "ALERT! Tweets are generally negative"
+
     plot_mood(dates,moods)
 
 
