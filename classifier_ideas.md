@@ -3,11 +3,9 @@ feature ideas:
 - bag of violent words  
   - return frequency of violent words in tweet  
   - return category of violent words  
-    - self-directed  
-    - non-physical  
-    - interpersonal  
-    - targeted  
-    - collective (war)  
+    - emotions   
+    - physical  
+    - war  
 - large amount of '!'  
 - frequency of words with all caps  
 - who is tweet directed at? look for 'myself', 'me', etc..  

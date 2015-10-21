@@ -5,6 +5,7 @@
 # Python version 2.7.10
 
 # libraries
+from __future__ import division
 import sys
 from openpyxl import load_workbook
 
@@ -14,11 +15,20 @@ def violence_features(tweet):
     wb = load_workbook('violent_bag.xlsx')
     ws = wb.active
 
-    # check to see if any violent words in tweet, return list
+    # definitions of stuff to return
     violent_words = []
     at_mentions = []
+    exclamations = 0
+    caps_words = 0
+
+    # go through each word in tweet and check for different properties
     for word in tweet:
-        # if word is a mention, skip
+        # search for number of !
+        exclamations += word.count('!')
+        if (word == word.upper()):
+           if (word is not 'I'):
+              caps_words += 1 
+        # if word is a mention, add to list
         if (word[0] == '@'):
            at_mentions.append(word) 
         else:
@@ -28,33 +38,21 @@ def violence_features(tweet):
                 if (word == row[0].value):
                     violent_words.append(word)
                     break
+
+    # add features to dictionary
     features['violent_words'] = violent_words
     features['violent_freq'] = len(violent_words)
     features['at_mentions'] = at_mentions
-    #features["violent_freq"] = len(violent_words)
-    #features["at_mentions"] = get_tagged_users(tweet)
-    #features["tense"] = get_tense(tweet)
-    #features["category"] = get_category(tweet,ws)
+    features['exclamations'] = exclamations
+    features['caps_percentage'] = caps_words/(len(tweet)-len(at_mentions))
+
     return features
-
-#def get_violent_words(tweet):
-#
-#
-#def get_tagged_users(tweet):
-#
-#
-#def get_tense(tweet):
-#
-#
-#def get_category(tweet):
-
 
 def main():
     tweet = sys.stdin.readline().split()
     features = violence_features(tweet)
     for key in features:
         print "{} : {}".format(key,features[key])
-
 
 if (__name__ == '__main__'):
     main()
